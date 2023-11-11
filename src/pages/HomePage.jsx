@@ -1,5 +1,7 @@
 import Loader from 'components/Loader/Loader';
 import MoviesList from 'components/MoviesList/MoviesList';
+import PageTitle from 'components/PageTitle/PageTitle';
+import Section from 'components/Section/Section';
 import { fetchTranding } from 'js/themoviedb-api';
 import { Notify } from 'notiflix';
 import React, { useState } from 'react';
@@ -26,9 +28,11 @@ const HomePage = () => {
   }, []);
   return (
     <>
-      <h1>Tranding today</h1>
-      {isLoading && <Loader />}
-      {trandingMovies.length > 0 && <MoviesList movies={trandingMovies} />}
+      <Section>
+        <PageTitle title="Tranding today" />
+        {isLoading && <Loader />}
+        {trandingMovies.length > 0 && <MoviesList movies={trandingMovies} />}
+      </Section>
     </>
   );
 };

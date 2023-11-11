@@ -1,14 +1,14 @@
 import React from 'react';
-import { Header, StyledNavLink } from './Layout.styled';
+import { Header, StyledHeaderContainer, StyledNavLink } from './Layout.styled';
 
 const Layout = ({ children }) => {
   return (
     <>
       <Header>
-        <StyledNavLink to="/" exact>
-          Home
-        </StyledNavLink>
-        <StyledNavLink to="/movies">Movies</StyledNavLink>
+        <StyledHeaderContainer>
+          <StyledNavLink to="/">Home</StyledNavLink>
+          <StyledNavLink to="/movies">Movies</StyledNavLink>
+        </StyledHeaderContainer>
       </Header>
       <main>{children}</main>
     </>

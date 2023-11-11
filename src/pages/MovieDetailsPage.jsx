@@ -1,4 +1,5 @@
 import Loader from 'components/Loader/Loader';
+import Section from 'components/Section/Section';
 import {
   DEFAULT_IMG_PLACEHOLDER,
   IMAGE_BASE_URL,
@@ -14,6 +15,7 @@ import {
   useLocation,
   useParams,
 } from 'react-router-dom';
+import BackButton from 'components/BackButton/BackButton';
 
 const CastPage = lazy(() => import('./CastPage'));
 const ReviewsPage = lazy(() => import('./ReviewsPage'));
@@ -45,46 +47,49 @@ const MovieDetailsPage = () => {
 
   return (
     <>
-      <Link to={backLinkRef.current}>
-        <button>&#8592; Go back</button>
-      </Link>
-      {isLoading && <Loader />}
-      {movieDetails !== null && (
-        <>
-          <h1>{movieDetails.title}</h1>
-          <img
-            src={
-              movieDetails.poster_path
-                ? `${IMAGE_BASE_URL}/w300/${movieDetails.poster_path}`
-                : DEFAULT_IMG_PLACEHOLDER
-            }
-            alt={movieDetails.title}
-            width={250}
-          />
-          <p>User Score: {Math.round(movieDetails.vote_average * 10)}% </p>
-          <h2>Overview</h2>
-          <p>{movieDetails.overview}</p>
-          <h2>Genres</h2>
-          <p>{movieDetails.genres.map(genre => genre.name).join(' ')}</p>
-          <div>
-            <h3>Additional information</h3>
-            <ul>
-              <li>
-                <NavLink to={`/movies/${movieId}/cast`}>Cast</NavLink>
-              </li>
-              <li>
-                <NavLink to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
-              </li>
-            </ul>
-          </div>
-          <Suspense fallback={<Loader />}>
-            <Routes>
-              <Route path="cast" element={<CastPage />} />
-              <Route path="reviews" element={<ReviewsPage />} />
-            </Routes>
-          </Suspense>
-        </>
-      )}
+      <Section>
+        <Link to={backLinkRef.current} className="link">
+          <BackButton />
+          {/* <Button label="&#8592; Go Back"></Button> */}
+        </Link>
+        {isLoading && <Loader />}
+        {movieDetails !== null && (
+          <>
+            <h1>{movieDetails.title}</h1>
+            <img
+              src={
+                movieDetails.poster_path
+                  ? `${IMAGE_BASE_URL}/w300/${movieDetails.poster_path}`
+                  : DEFAULT_IMG_PLACEHOLDER
+              }
+              alt={movieDetails.title}
+              width={250}
+            />
+            <p>User Score: {Math.round(movieDetails.vote_average * 10)}% </p>
+            <h2>Overview</h2>
+            <p>{movieDetails.overview}</p>
+            <h2>Genres</h2>
+            <p>{movieDetails.genres.map(genre => genre.name).join(' ')}</p>
+            <div>
+              <h3>Additional information</h3>
+              <ul>
+                <li>
+                  <NavLink to={`/movies/${movieId}/cast`}>Cast</NavLink>
+                </li>
+                <li>
+                  <NavLink to={`/movies/${movieId}/reviews`}>Reviews</NavLink>
+                </li>
+              </ul>
+            </div>
+            <Suspense fallback={<Loader />}>
+              <Routes>
+                <Route path="cast" element={<CastPage />} />
+                <Route path="reviews" element={<ReviewsPage />} />
+              </Routes>
+            </Suspense>
+          </>
+        )}
+      </Section>
     </>
   );
 };

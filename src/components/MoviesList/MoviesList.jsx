@@ -1,19 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { StyledLink, StyledList, StyledListItem } from './MoviesList.styled';
 
 const MoviesList = ({ movies, location }) => {
   return (
     <>
       {movies.length > 0 && (
-        <ul>
+        <StyledList>
           {movies.map(({ id, title, name }) => (
-            <li key={id}>
-              <Link to={`/movies/${id}`} state={{ from: location }}>
+            <StyledListItem key={id}>
+              <StyledLink to={`/movies/${id}`} state={{ from: location }}>
                 {title || name}
-              </Link>
-            </li>
+              </StyledLink>
+            </StyledListItem>
           ))}
-        </ul>
+        </StyledList>
       )}
     </>
   );
