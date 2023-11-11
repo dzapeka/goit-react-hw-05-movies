@@ -1,10 +1,6 @@
 import Loader from 'components/Loader/Loader';
 import Section from 'components/Section/Section';
-import {
-  DEFAULT_IMG_PLACEHOLDER,
-  IMAGE_BASE_URL,
-  fetchDetails,
-} from 'js/themoviedb-api';
+import { fetchDetails } from 'js/themoviedb-api';
 import { Notify } from 'notiflix';
 import React, { Suspense, lazy, useEffect, useRef, useState } from 'react';
 import {
@@ -16,6 +12,8 @@ import {
   useParams,
 } from 'react-router-dom';
 import BackButton from 'components/BackButton/BackButton';
+import PageTitle from 'components/PageTitle/PageTitle';
+import MovieDetails from 'components/MovieDetails/MovieDetails';
 
 const CastPage = lazy(() => import('./CastPage'));
 const ReviewsPage = lazy(() => import('./ReviewsPage'));
@@ -55,21 +53,7 @@ const MovieDetailsPage = () => {
         {isLoading && <Loader />}
         {movieDetails !== null && (
           <>
-            <h1>{movieDetails.title}</h1>
-            <img
-              src={
-                movieDetails.poster_path
-                  ? `${IMAGE_BASE_URL}/w300/${movieDetails.poster_path}`
-                  : DEFAULT_IMG_PLACEHOLDER
-              }
-              alt={movieDetails.title}
-              width={250}
-            />
-            <p>User Score: {Math.round(movieDetails.vote_average * 10)}% </p>
-            <h2>Overview</h2>
-            <p>{movieDetails.overview}</p>
-            <h2>Genres</h2>
-            <p>{movieDetails.genres.map(genre => genre.name).join(' ')}</p>
+            <MovieDetails movie={movieDetails} />
             <div>
               <h3>Additional information</h3>
               <ul>
@@ -81,6 +65,7 @@ const MovieDetailsPage = () => {
                 </li>
               </ul>
             </div>
+
             <Suspense fallback={<Loader />}>
               <Routes>
                 <Route path="cast" element={<CastPage />} />
