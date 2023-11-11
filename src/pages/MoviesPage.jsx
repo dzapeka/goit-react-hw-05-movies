@@ -43,6 +43,7 @@ const MoviesPage = () => {
           type="text"
           autoComplete="off"
           name="searchQuery"
+          placeholder="Search movies..."
           autoFocus
           required
         />
