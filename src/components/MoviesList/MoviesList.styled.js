@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const StyledList = styled.ul`
-  list-style-type: none;
   padding-left: 0px;
   margin-top: 15px;
 `;

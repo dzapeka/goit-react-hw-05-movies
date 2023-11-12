@@ -23,7 +23,6 @@ export const StyledNavLink = styled(NavLink)`
 `;
 
 export const StyledList = styled.ul`
-  list-style-type: none;
   display: flex;
   gap: 10px;
   margin-top: 15px;

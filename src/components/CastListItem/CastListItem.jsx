@@ -1,10 +1,15 @@
 import { DEFAULT_IMG_PLACEHOLDER, IMAGE_BASE_URL } from 'js/themoviedb-api';
 import React from 'react';
+import {
+  CastListItemContainer,
+  ProfileName,
+  ProfilePhoto,
+} from './CastListItem.styled';
 
 const CastListItem = ({ name, character, profile_path }) => {
   return (
-    <>
-      <img
+    <CastListItemContainer>
+      <ProfilePhoto
         src={
           profile_path
             ? `${IMAGE_BASE_URL}/w200/${profile_path}`
@@ -14,10 +19,10 @@ const CastListItem = ({ name, character, profile_path }) => {
         width="200"
       />
       <div>
-        <p>{name}</p>
+        <ProfileName>{name}</ProfileName>
         <p>{character}</p>
       </div>
-    </>
+    </CastListItemContainer>
   );
 };
 
