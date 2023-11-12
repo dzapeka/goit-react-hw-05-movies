@@ -30,7 +30,6 @@ export const StyledListItem = styled.li`
 export const StyledLink = styled(Link)`
   text-decoration: none;
   color: inherit;
-  font-weight: 600;
   font-size: 18px;
   line-height: 1.5;
   letter-spacing: 0.02em;

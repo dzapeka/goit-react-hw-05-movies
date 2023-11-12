@@ -29,11 +29,16 @@ const ReviewsPage = () => {
 
   return (
     <>
-      {isLoading && <Loader />}
-      {reviews.length > 0 ? (
-        <ReviewsList reviews={reviews} />
+      {isLoading ? (
+        <Loader />
       ) : (
-        'We do not have any reviews for this movie'
+        <>
+          {reviews.length > 0 ? (
+            <ReviewsList reviews={reviews} />
+          ) : (
+            'We do not have any reviews for this movie'
+          )}
+        </>
       )}
     </>
   );

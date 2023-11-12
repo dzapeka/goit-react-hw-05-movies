@@ -1,3 +1,9 @@
+import {
+  StyledForm,
+  StyledInput,
+  StyledSearchButton,
+} from './SearchMoviesForm.styled';
+
 const SearchForm = ({ onSubmit }) => {
   const handleSubmit = event => {
     event.preventDefault();
@@ -7,8 +13,8 @@ const SearchForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <StyledForm onSubmit={handleSubmit}>
+      <StyledInput
         type="text"
         autoComplete="off"
         name="searchQuery"
@@ -16,8 +22,8 @@ const SearchForm = ({ onSubmit }) => {
         autoFocus
         required
       />
-      <button type="submit">Search</button>
-    </form>
+      <StyledSearchButton type="submit">Search</StyledSearchButton>
+    </StyledForm>
   );
 };
 

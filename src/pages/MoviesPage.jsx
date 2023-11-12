@@ -1,6 +1,7 @@
 import Loader from 'components/Loader/Loader';
 import MoviesList from 'components/MoviesList/MoviesList';
 import SearchForm from 'components/SearchMoviesForm/SearchMoviesForm';
+import Section from 'components/Section/Section';
 import { searchMovie } from 'js/themoviedb-api';
 import { Notify } from 'notiflix';
 import React, { useEffect, useState } from 'react';
@@ -46,11 +47,18 @@ const MoviesPage = () => {
   }, [searchQuery]);
 
   return (
-    <>
+    <Section>
       <SearchForm onSubmit={searchQuery => onSearchFormSubmit(searchQuery)} />
-      {isLoading && <Loader />}
-      {movies.length > 0 && <MoviesList movies={movies} location={location} />}
-    </>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          {movies.length > 0 && (
+            <MoviesList movies={movies} location={location} />
+          )}
+        </>
+      )}
+    </Section>
   );
 };
 
