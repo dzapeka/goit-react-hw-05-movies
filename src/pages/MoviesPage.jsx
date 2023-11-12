@@ -19,20 +19,12 @@ const MoviesPage = () => {
   const onSearchFormSubmit = ({ searchQuery }) =>
     setSearchParams({ query: searchQuery });
 
-  // const handleSubmit = event => {
-  //   event.preventDefault();
-  //   setSearchParams({
-  //     query: event.currentTarget.elements.searchQuery.value.trim(),
-  //   });
-  // };
-
   useEffect(() => {
     if (!searchQuery) return;
     const searchMovies = async () => {
       try {
         setIsLoading(true);
         const { results } = await searchMovie(searchQuery);
-        console.log(results);
         if (results.length === 0) {
           Notify.info('No movies found. Please try a different search.');
         }
