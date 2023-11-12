@@ -1,4 +1,5 @@
 import React from 'react';
+import { StyledText, StyledTitle } from './ReviewsList.styles';
 
 const ReviewsList = ({ reviews }) => {
   return (
@@ -7,8 +8,8 @@ const ReviewsList = ({ reviews }) => {
         <ul>
           {reviews.map(({ id, author, content }) => (
             <li key={id}>
-              <h3>Author: {author}</h3>
-              <p>{content}</p>
+              <StyledTitle>Author: {author}</StyledTitle>
+              <StyledText>{content}</StyledText>
             </li>
           ))}
         </ul>
